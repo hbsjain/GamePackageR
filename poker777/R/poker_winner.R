@@ -1,20 +1,33 @@
-user_input <- function() {
-  hands <- list()
+#' Determine winner of a poker game
+#'
+#' @return A number indicating player 1 or player 2
+#' @export
+#'
+#' @examples
+#' poker_winner()
+#' # user will be prompted to enter cards as character vector for each player
+poker_winner <- function() {
 
-  for (i in 1:2) {
-    hand <- character(0)
+  # Take user input
+  user_input <- function() {
+    hands <- list()
 
-    while (length(hand) < 5) {
-      card <- readline(prompt = paste("Player", i, "- Enter a card (e.g., '2H' for 2 of hearts): "))
-      if (length(card) == 0) {
-        print("Please enter a valid card.")
-      } else {
-        hand <- c(hand, card)
+    for (i in 1:2) {
+      hand <- character(0)
+
+      while (length(hand) < 5) {
+        card <- readline(prompt = paste("Player", i, "- Enter a card (e.g., '2H' for 2 of hearts): "))
+        if (length(card) == 0) {
+          print("Please enter a valid card.")
+        } else {
+          hand <- c(hand, card)
+        }
       }
+      hands[[i]] <- hand
     }
-
-    hands[[i]] <- hand
+    return(hands)
   }
 
-  return(hands)
+  user_input()
 }
+
