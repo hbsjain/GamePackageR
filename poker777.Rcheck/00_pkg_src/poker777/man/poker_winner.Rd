@@ -4,19 +4,15 @@
 \alias{poker_winner}
 \title{Determine winner of a poker game}
 \usage{
-poker_winner(hands)
-}
-\arguments{
-\item{hands}{list of cards that both player have in hand}
+poker_winner()
 }
 \value{
-A number indicating winner - player 1 or player 2 or tie(0)
+A number indicating player 1 or player 2
 }
 \description{
 Determine winner of a poker game
 }
 \examples{
-hands <- list(c("2h","2h","2h","2h","3h"),c("4h","4h","4h","4h","5h"))
-poker_winner(hands)
+poker_winner()
 # user will be prompted to enter cards as character vector for each player
 }
