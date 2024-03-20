@@ -2,7 +2,7 @@
 % Please edit documentation in R/user_input.R
 \name{user_input}
 \alias{user_input}
-\title{Take user input}
+\title{Take user input for poker game}
 \usage{
 user_input()
 }
@@ -10,5 +10,13 @@ user_input()
 hands A list of 2 character vectors having cards for each player
 }
 \description{
-Take user input
+Take user input for poker game
+}
+\examples{
+# This function allows user to input the cards held by 2 players and returns a list containing both hands.
+save_hands <- function(){
+  hands <- user_input()
+  return(hands)
+}
+
 }

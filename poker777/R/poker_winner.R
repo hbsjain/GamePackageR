@@ -7,7 +7,6 @@
 #' @examples
 #' hands <- list(c("2h","2h","2h","2h","3h"),c("4h","4h","4h","4h","5h"))
 #' poker_winner(hands)
-#' # user will be prompted to enter cards as character vector for each player
 
 poker_winner <- function(hands) {
 

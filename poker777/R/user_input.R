@@ -1,7 +1,15 @@
-#' Take user input
+#' Take user input for poker game
 #'
 #' @return hands A list of 2 character vectors having cards for each player
 #' @export
+#'
+#' @examples
+#' # This function allows user to input the cards held by 2 players and returns a list containing both hands.
+#' save_hands <- function(){
+#'   hands <- user_input()
+#'   return(hands)
+#' }
+#'
 user_input <- function() {
   hands <- list()
 
