@@ -4,7 +4,8 @@
 #' @export
 #'
 #' @examples
-#' # This function allows user to input the cards held by 2 players and returns a list containing both hands.
+#' # This function allows user to input the cards held by 2 players
+#' # returns a list containing both hands.
 #' save_hands <- function(){
 #'   hands <- user_input()
 #'   return(hands)
