@@ -8,12 +8,20 @@
 [![R-CMD-check](https://github.com/numbats/assignment-1-package-creation-hbsjain/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/numbats/assignment-1-package-creation-hbsjain/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of poker777 is to …
+The ‘poker777’ package provides a function to determine the winner of a
+poker game between two players based on their hands. It evaluates each
+player’s hand according to standard poker rules, including identifying
+royal flushes, straights, flushes, pairs, and high cards. The function
+validates input hands to ensure they contain exactly five cards in the
+correct format before determining the winner. This package is useful for
+analyzing poker games and settling disputes in friendly games or
+simulations.
 
 ## Installation
 
 You can install the development version of poker777 from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/numbats/assignment-1-package-creation-hbsjain)
+with:
 
 ``` r
 # install.packages("devtools")
@@ -22,33 +30,12 @@ devtools::install_github("numbats/assignment-1-package-creation-hbsjain")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to input the cards in each
+player’s hands and find who wins the round.
 
 ``` r
 library(poker777)
-## basic example code
+hands <- list(c("2h","2h","2h","2h","3h"),c("4h","4h","4h","4h","5h"))
+poker_winner(hands)
+#> [1] 2
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
