@@ -11,12 +11,27 @@
 poker_winner <- function(hands) {
 
   card_values <- c("A","2","3","4","5","6","7","8","9","T","J","Q","K")
-  suite <- c("H", "C", "D", "S")
+  suite <- c("H", "C", "D", "S","h","c","d","s")
 
   # Function to convert card value to numeric
   convert_to_numeric <- function(card) {
     card_value <- substr(card, 1, 1)
     return(match(card_value, card_values))
+  }
+
+  is_valid_hand <- function(hand) {
+    # Check if the hand has exactly 5 cards
+    if (length(hand) != 5) {
+      stop("Each hand must have exactly 5 cards.")
+    }
+    # Check if each card is in the correct format
+    if (!all(substr(hand, 1, 1) %in% card_values & substr(hand, 2, 2) %in% suite)) {
+      stop("Invalid card format. Cards must be in the format '2H' for 2 of hearts.")
+    }
+    return(TRUE)
+  }
+  if (!is_valid_hand(hands[[1]]) || !is_valid_hand(hands[[2]])) {
+    stop("Invalid hands provided.")
   }
 
   # Function to check if a hand is a flush
@@ -41,7 +56,7 @@ poker_winner <- function(hands) {
     suits <- substr(hand, 2, 2)
     values <- substr(hand, 1, 1)
     royal_values <- c("T", "J", "Q", "K", "A")
-    return(length(unique(suits)) == 1 && all(values %in% royal_values))
+    return(is_flush(hand) && all(values %in% royal_values))
   }
 
   # Function to check if a hand is a three of a kind
@@ -105,8 +120,8 @@ poker_winner <- function(hands) {
   }
 
   # Determine best hand for each player
-  player1_hand <- determine_best_hand(hands[1])
-  player2_hand <- determine_best_hand(hands[2])
+  player1_hand <- determine_best_hand(hands[[1]])
+  player2_hand <- determine_best_hand(hands[[2]])
 
   # Compare best hands
   if (player1_hand > player2_hand) {
