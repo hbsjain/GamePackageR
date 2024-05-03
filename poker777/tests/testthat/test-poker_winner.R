@@ -39,7 +39,7 @@ test_that("poker_winner() correctly identifies Three of a Kind", {
 })
 
 test_that("poker_winner() correctly identifies Two Pair", {
-  hands <- list(c("2h", "2c", "3d", "3s", "4h"), c("3c", "3d", "4s", "4h", "5c"))
+  hands <- list(c("2h", "2c", "3d", "5s", "4h"), c("3c", "3d", "4s", "4h", "5c"))
   expect_equal(poker_winner(hands), 2)  # Player 2 has Two Pair
 })
 
