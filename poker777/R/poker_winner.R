@@ -84,7 +84,7 @@ poker_winner <- function(hands) {
   is_two_pair <- function(hand) {
     hand_numeric <- sort(sapply(hand, convert_to_numeric))
     counts <- table(hand_numeric)
-    return(length(counts) == 3 && all(counts == 2))
+    return(length(counts) == 3 && sum(counts == 2)==2)
   }
 
   # Function to check if a hand is a pair
