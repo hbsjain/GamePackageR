@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/Advanced-R-Programming/assignment-3-package-completion-hbsjain/blob/main/.github/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Advanced-R-Programming/assignment-3-package-completion-hbsjain/blob/main/.github/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/Advanced-R-Programming/assignment-3-package-completion-hbsjain/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Advanced-R-Programming/assignment-3-package-completion-hbsjain/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The ‘poker777’ package provides a function to determine the winner of a
