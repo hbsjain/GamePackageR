@@ -1,5 +1,5 @@
 poker_leaderboard <- function(scoreboard) {
-  scoreboard <- vec_cast.data.frame.scores()
+  scoreboard <- vec_cast.data.frame.scores(scoreboard)
   scoreboard %>%
     group_by(player_no) %>%
     summarise(actual_win = sum(pot - bet),
@@ -8,7 +8,7 @@ poker_leaderboard <- function(scoreboard) {
     arrange(-actual_win)
 }
 
-poker_leaderboard(scoreboard)
+poker_leaderboard(pot_wins)
 
 create_scoreboard <- function(player_no, pot, bet) {
   # Check if all parameters are of the same length
@@ -45,10 +45,7 @@ format.scores <- function(x, ...) {
 }
 
 vec_cast.data.frame.scores <- function(x, to, ...){
-  vctrs::vec_data(scoreboard)
+  vctrs::vec_data(x)
 }
 
-vec_cast.scores.data.frame <- function(x, to, ...){
-  vctrs::vec_data(scoreboard)
-}
 
