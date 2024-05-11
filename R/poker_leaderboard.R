@@ -1,8 +1,13 @@
+# To avoid the note of binding global variables
+utils::globalVariables("player_no")
+utils::globalVariables("bet")
+utils::globalVariables("pot")
+utils::globalVariables("actual_win")
+
 #' Leaderboard Generator. Based on the winners of each round and pot amount, arranges player positions and shows net amount won and rounds won by each player
 #'
 #' @param scoreboard A vector of type scores having the player no, pot amounts and bet amounts
-#'
-#' @import dplyr
+#' @importFrom dplyr group_by summarise arrange %>% n
 #' @export
 #'
 #' @examples
@@ -11,11 +16,13 @@
 poker_leaderboard <- function(scoreboard) {
   scoreboard <- vec_cast.data.frame.scores(scoreboard)
   scoreboard %>%
-    group_by(player_no) %>%
-    summarise(actual_win = sum(pot - bet),
-              total_bet = sum(bet),
-              rounds_won = n()) |>
-    arrange(-actual_win)
+    dplyr::group_by(player_no) |>
+    dplyr::summarise(
+      actual_win = sum(pot - bet),
+      total_bet = sum(bet),
+      rounds_won = n()
+    ) |>
+    dplyr::arrange(-actual_win)
 }
 
 
@@ -25,7 +32,7 @@ poker_leaderboard <- function(scoreboard) {
 #' @param pot A numeric vector having the pot amounts
 #' @param bet A numeric vector bet amounts which can't be more than pot amount
 #'
-#' @import vctrs
+#' @importFrom vctrs vec_assert new_rcrd
 #' @return scoreboard A custom vector usable to calculate leaderboard
 #' @export
 #'
@@ -61,7 +68,7 @@ create_scoreboard <- function(player_no, pot, bet) {
 #'
 #' @param x A scores vector rcrd class
 #' @param ... Other parameters if required
-#' @import vctrs
+#' @importFrom vctrs field
 #' @return Neatly prints the scores board
 #' @export
 format.scores <- function(x, ...) {
@@ -79,11 +86,10 @@ format.scores <- function(x, ...) {
 #' @param x A scores vector rcrd class
 #' @param to A class that we need to convert to. By default a data frame
 #' @param ... Other parameters if required
-#' @import vctrs
+#' @importFrom vctrs vec_data
 #' @return A data frame
 #' @export
-vec_cast.data.frame.scores <- function(x, to, ...){
+vec_cast.data.frame.scores <- function(x, to, ...) {
   vctrs::vec_data(x)
 }
-
 
