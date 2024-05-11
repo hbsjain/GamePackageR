@@ -14,6 +14,101 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Using poker777
+
 ```{r setup}
 library(poker777)
 ```
+
+# Introduction
+
+Welcome to the poker777 package, designed to facilitate the simulation and analysis of poker games. Whether you're an avid poker player, a researcher studying game theory, or simply curious about the intricacies of poker strategy, this package offers a range of tools to explore the dynamics of the game.
+
+## Features
+
+### 1. Determining Poker Winners
+
+The poker_winner function enables you to determine the winner of a poker game between two players. By evaluating the best hand for each player and comparing them, this function provides a clear outcome or identifies ties.
+
+### 2. Simulating Chip Balances
+
+With the poker_balance_chips function, you can simulate the balance of chips for players participating in a poker game. This function takes into account parameters such as buy-in limits, minimum bet requirements, player buy-in amounts, and the outcomes of each betting round.
+
+### 3. Generating Leaderboards
+
+The poker_leaderboard function generates leaderboards based on the winners of each round, as well as the pot and bet amounts. It arranges player positions and displays net amounts won, as well as the number of rounds won by each player.
+
+### 4. Creating Scoreboards
+
+Using the create_scoreboard function, you can generate scoreboard vectors for each round of a poker game. These vectors contain information about the winner, pot amount, and bet amount for each round, aiding in tracking game progress and outcomes.
+
+## Determining Poker Winners
+
+The `poker_winner` function is used to determine the winner of a poker game between two players. It evaluates the best hand for each player and compares them to determine the winner or if it's a tie. Here's how you can use it:
+
+```{r poker-winner-usage}
+library(poker777)
+
+# Define hands for two players
+hands <- list(c("2h", "2h", "2h", "2h", "3h"), c("4h", "4h", "4h", "4h", "5h"))
+
+# Determine the winner
+winner <- poker_winner(hands)
+
+# Print the winner
+print(winner)
+```
+
+## Simulating Chip Balances
+
+The poker_balance_chips function simulates the balance of chips for a player participating in a poker game. It takes into account various parameters such as buy-in limits, minimum bet requirements, player buy-in amount, and the outcome of each round of betting. Here's how you can use it:
+
+```{r sim-bal-chips}
+library(poker777)
+
+# Define parameters
+buy_in_limits <- c(100, 500)
+min_bet <- 10
+player_buy_in <- 200
+bet_n_win <- list(c(20, 50), c(30, 0), c(50, 100))
+
+# Call the function
+remaining_chips <- poker_balance_chips(buy_in_limits, min_bet, player_buy_in, bet_n_win)
+
+# Print the result
+print(remaining_chips)
+```
+
+## Generating Leaderboards
+
+The poker_leaderboard function generates a leaderboard based on the winners of each round, as well as the pot and bet amounts. It arranges player positions and displays the net amount won and the number of rounds won by each player. Here's how you can use it:
+
+```{r leaderboard}
+library(poker777)
+
+# Create a scoreboard
+pot_wins <- create_scoreboard(c(1, 2, 3), c(5000, 3000, 4000), c(200, 500, 300))
+
+# Generate leaderboard
+leaderboard <- poker_leaderboard(pot_wins)
+
+# Print the leaderboard
+print(leaderboard)
+```
+
+## Creating Scoreboards
+
+The create_scoreboard function is used to generate a scoreboard vector for each round of a poker game. This vector consists of information about the winner, pot amount, and bet amount for each round. Here's how you can use it:
+
+```{r scoreboard}
+library(poker777)
+
+# Create a scoreboard
+scoreboard <- create_scoreboard(c(1, 2, 3), c(5000, 3000, 4000), c(200, 500, 300))
+
+# Print the scoreboard
+print(scoreboard)
+```
+
+**Thank you for choosing the poker777 package. Happy analyzing, and may your poker simulations be both enlightening and rewarding!**
+

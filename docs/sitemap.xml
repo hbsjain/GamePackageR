@@ -25,13 +25,49 @@
     <loc>/reference/card_values.html</loc>
   </url>
   <url>
+    <loc>/reference/convert_to_numeric.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_scoreboard.html</loc>
+  </url>
+  <url>
+    <loc>/reference/determine_best_hand.html</loc>
   </url>
   <url>
     <loc>/reference/format.scores.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_flush.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_four_of_a_kind.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_full_house.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_pair.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_royal_flush.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_straight.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_straight_flush.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_three_of_a_kind.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_two_pair.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_valid_hand.html</loc>
   </url>
   <url>
     <loc>/reference/poker777-package.html</loc>

@@ -1,4 +1,10 @@
-# Checking valid hand input
+#' Checking valid hand input.
+#'
+#' This function checks if a given input represents a valid poker hand.
+#'
+#' @param hand A character vector representing a poker hand.
+#' @return A logical value indicating whether the hand is valid.
+#' @keywords internal
 is_valid_hand <- function(hand) {
 
   # Check if the hand has exactly 5 cards

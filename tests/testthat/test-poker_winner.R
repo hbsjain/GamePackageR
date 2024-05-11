@@ -1,66 +1,197 @@
-test_that("poker_winner() with input 2h,2h,2h,2h,3h and 4h,4h,4h,4h,5h gives 2 as winner", {
-  hands <- list(c("2h","2h","2h","2h","3h"),c("4h","4h","4h","4h","5h"))
-  expect_equal(poker_winner(hands), 2)
+# Test for valid inputs and player 1 wins with a higher hand
+test_that("Player 1 wins with a higher hand", {
+  hands <- list(c("2H", "3H", "4H", "5H", "9H"), c("2D", "7D", "4D", "5D", "6D"))
+  winner <- poker_winner(hands)
+  expect_equal(winner, 1)
 })
 
-test_that("poker_winner() correctly identifies Royal Flush", {
-  hands <- list(c("Th", "Jh", "Qh", "Kh", "Ah"), c("2c", "3c", "4c", "5c", "6c"))
-  expect_equal(poker_winner(hands), 1)  # Player 1 has a Royal Flush
+# Test for valid inputs and player 2 wins with a higher hand
+test_that("Player 2 wins with a higher hand", {
+  hands <- list(c("2H", "3H", "4H", "5H", "6H"), c("3D", "4D", "5D", "6D", "7D"))
+  winner <- poker_winner(hands)
+  expect_equal(winner, 2)
 })
 
-test_that("poker_winner() correctly identifies Straight Flush", {
-  hands <- list(c("2h", "3h", "4h", "5h", "6h"), c("3c", "4c", "5c", "6c", "7c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has a Straight Flush
+# Test for valid inputs and a tie
+test_that("It's a tie", {
+  hands <- list(c("2H", "3H", "4H", "5H", "6H"), c("2D", "3D", "4D", "5D", "6D"))
+  winner <- poker_winner(hands)
+  expect_equal(winner, 0)
 })
 
-test_that("poker_winner() correctly identifies Four of a Kind", {
-  hands <- list(c("2h", "2c", "2d", "2s", "3h"), c("4c", "4d", "4s", "4h", "5c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has Four of a Kind
+# Test for invalid input (more than 2 player hands)
+test_that("More than 2 player hands entered", {
+  hands <- list(c("2H", "3H", "4H", "5H", "6H"), c("2D", "3D", "4D", "5D", "6D"), c("2C", "3C", "4C", "5C", "6C"))
+  expect_error(poker_winner(hands), "More than 2 player hands entered.")
 })
 
-test_that("poker_winner() correctly identifies Full House", {
-  hands <- list(c("2h", "2c", "2d", "3s", "3h"), c("4c", "4d", "4s", "5h", "5c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has a Full House
+# Test for invalid input (invalid hands provided)
+test_that("Invalid hands provided", {
+  hands <- list(c("2H", "3H", "4H", "5H", "6H"), c("2F", "3G", "4K", "5T", "6S"))
+  expect_error(poker_winner(hands))
 })
 
-test_that("poker_winner() correctly identifies Flush", {
-  hands <- list(c("2h", "4h", "6h", "8h", "Th"), c("3c", "5d", "7c", "9c", "Jc"))
-  expect_equal(poker_winner(hands), 1)  # Player 1 has a Flush
+# Test for a royal flush
+test_that("Detects a royal flush", {
+  hand <- "TH JH QH KH AH"
+  expect_true(is_royal_flush(hand))
 })
 
-test_that("poker_winner() correctly identifies Straight", {
-  hands <- list(c("2h", "3c", "4d", "5s", "6h"), c("3c", "4d", "5s", "6h", "7c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has a Straight
+
+# Test for a straight flush
+test_that("Detects a straight flush", {
+  hand <- c("2H", "3H", "4H", "5H", "6H")
+  expect_true(is_straight_flush(hand))
 })
 
-test_that("poker_winner() correctly identifies Three of a Kind", {
-  hands <- list(c("2h", "2c", "2d", "3s", "4h"), c("3c", "3d", "3s", "5h", "6c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has Three of a Kind
+# Test for a non-straight flush
+test_that("Does not detect a non-straight flush as a straight flush", {
+  hand <- c("2H", "3H", "4H", "5H", "7H")
+  expect_false(is_straight_flush(hand))
 })
 
-test_that("poker_winner() correctly identifies Two Pair", {
-  hands <- list(c("2h", "2c", "3d", "6s", "4h"), c("3c", "3d", "4s", "4h", "5c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has Two Pair
+# Test for a non-flush hand
+test_that("Does not detect a non-flush hand as a straight flush", {
+  hand <- c("2H", "3H", "4H", "5H", "6D")
+  expect_false(is_straight_flush(hand))
 })
 
-test_that("poker_winner() correctly identifies Pair", {
-  hands <- list(c("2h", "2c", "3d", "4s", "5h"), c("3c", "3d", "4s", "6h", "7c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has a Pair
+
+
+# Test for a four of a kind
+test_that("Detects a four of a kind", {
+  hand <- c("2H", "2D", "2S", "2C", "5H")
+  expect_true(is_four_of_a_kind(hand))
 })
 
-test_that("poker_winner() correctly identifies High Card", {
-  hands <- list(c("2h", "3c", "4d", "5s", "7h"), c("3c", "4d", "5s", "6h", "8c"))
-  expect_equal(poker_winner(hands), 2)  # Player 2 has the highest card
+# Test for a non-four of a kind
+test_that("Does not detect a non-four of a kind as a four of a kind", {
+  hand <- c("2H", "2D", "3S", "4C", "5H")
+  expect_false(is_four_of_a_kind(hand))
 })
 
-test_that("poker_winner() stops execution and throws error for invalid hand lengths", {
-  invalid_hands <- list(c("2h", "2c", "2d"), c("4c", "4d", "4s", "4h", "5c", "6h"))
-  expect_error(poker_winner(invalid_hands), "Each hand must have exactly 5 cards.")
+# Test for a hand with four aces
+test_that("Detects a hand with four aces as a four of a kind", {
+  hand <- c("AH", "AD", "AS", "AC", "5H")
+  expect_true(is_four_of_a_kind(hand))
 })
 
-test_that("poker_winner() stops execution and throws error for invalid card format", {
-  invalid_hands <- list(c("2h", "2c", "2d", "2s", "3h"), c("4c", "4d", "4s", "4h", "5c", "6h"))
-  invalid_hands[[1]][2] <- "invalid"  # Introduce an invalid card format
-  expect_error(poker_winner(invalid_hands), "Invalid card format. Cards must be in the format '2H' for 2 of hearts.")
+
+
+# Test for a full house
+test_that("Detects a full house", {
+  hand <- c("2H", "2D", "2S", "3C", "3H")
+  expect_true(is_full_house(hand))
 })
 
+# Test for a non-full house
+test_that("Does not detect a non-full house as a full house", {
+  hand <- c("2H", "2D", "3S", "4C", "5H")
+  expect_false(is_full_house(hand))
+})
+
+# Test for a hand with four aces
+test_that("Does not detect a hand with four aces as a full house", {
+  hand <- c("AH", "AD", "AS", "AC", "5H")
+  expect_false(is_full_house(hand))
+})
+
+# Test for a flush
+test_that("Detects a flush", {
+  hand <- c("2H", "3H", "4H", "5H", "6H")
+  expect_true(is_flush(hand))
+})
+
+# Test for a non-flush
+test_that("Does not detect a non-flush as a flush", {
+  hand <- c("2H", "3H", "4H", "5H", "6D")
+  expect_false(is_flush(hand))
+})
+
+
+
+# Test for a straight
+test_that("Detects a straight", {
+  hand <- c("2H", "3D", "4S", "5C", "6H")
+  expect_true(is_straight(hand))
+})
+
+# Test for a non-straight
+test_that("Does not detect a non-straight as a straight", {
+  hand <- c("2H", "3D", "4S", "5C", "7H")
+  expect_false(is_straight(hand))
+})
+
+
+
+# Test for a three of a kind
+test_that("Detects a three of a kind", {
+  hand <- c("2H", "2D", "2S", "3C", "4H")
+  expect_true(is_three_of_a_kind(hand))
+})
+
+# Test for a non-three of a kind
+test_that("Does not detect a non-three of a kind as a three of a kind", {
+  hand <- c("2H", "2D", "3S", "4C", "5H")
+  expect_false(is_three_of_a_kind(hand))
+})
+
+
+# Test for a two pair
+test_that("Detects a two pair", {
+  hand <- c("2H", "2D", "3S", "3C", "4H")
+  expect_true(is_two_pair(hand))
+})
+
+# Test for a non-two pair
+test_that("Does not detect a non-two pair as a two pair", {
+  hand <- c("2H", "2D", "3S", "4C", "5H")
+  expect_false(is_two_pair(hand))
+})
+
+# Test for a hand with three pairs
+test_that("Does not detect a hand with three pairs as a two pair", {
+  hand <- c("2H", "2D", "3S", "3C", "3H")
+  expect_false(is_two_pair(hand))
+})
+
+# Test for a hand with a four of a kind
+test_that("Does not detect a hand with a four of a kind as a two pair", {
+  hand <- c("2H", "2D", "2S", "2C", "5H")
+  expect_false(is_two_pair(hand))
+})
+
+
+# Test for a pair
+test_that("Detects a pair", {
+  hand <- c("2H", "2D", "3S", "4C", "5H")
+  expect_true(is_pair(hand))
+})
+
+# Test for a non-pair
+test_that("Does not detect a non-pair as a pair", {
+  hand <- c("2H", "3D", "4S", "5C", "6H")
+  expect_false(is_pair(hand))
+})
+
+# Test for a hand with three of a kind
+test_that("Does not detect a hand with three of a kind as a pair", {
+  hand <- c("2H", "2D", "2S", "3C", "4H")
+  expect_false(is_pair(hand))
+})
+
+# Test for a hand with four of a kind
+test_that("Does not detect a hand with four of a kind as a pair", {
+  hand <- c("2H", "2D", "2S", "2C", "5H")
+  expect_false(is_pair(hand))
+})
+
+# Test for converting '2' to 1. Ace is highest so 2 is 1, 3 is 2 and so on
+test_that("Converts '2' to 1", {
+  expect_equal(convert_to_numeric("2H"), 1)
+})
+
+# Test for converting 'A' to 13. Ace is highest so it is 13
+test_that("Converts 'A' to 13", {
+  expect_equal(convert_to_numeric("AH"), 13)
+})

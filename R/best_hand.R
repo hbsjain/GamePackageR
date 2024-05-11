@@ -1,4 +1,10 @@
-# Function to determine the best hand
+#' Determine the best hand.
+#'
+#' This function determines the rank of a given poker hand, based on various combinations.
+#'
+#' @param hand A character vector representing a poker hand.
+#' @return An integer indicating the rank of the hand.
+#' @keywords internal
 determine_best_hand <- function(hand) {
   if (is_royal_flush(hand)) {
     return(9)  # Royal Flush
