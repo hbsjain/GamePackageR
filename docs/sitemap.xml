@@ -48,4 +48,13 @@
   <url>
     <loc>/reference/vec_cast.data.frame.scores.html</loc>
   </url>
+  <url>
+    <loc>/reference/vec_cast.scores.data.frame.html</loc>
+  </url>
+  <url>
+    <loc>/reference/vec_ptype2.data.frame.scores.html</loc>
+  </url>
+  <url>
+    <loc>/reference/vec_ptype2.scores.data.frame.html</loc>
+  </url>
 </urlset>

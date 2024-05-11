@@ -73,6 +73,7 @@ create_scoreboard <- function(player_no, pot, bet) {
 #' @export
 format.scores <- function(x, ...) {
   cat(sprintf("Player    | Pot        | Bet \n"))
+  cat(" ")
   cat(sprintf(
     "%-8s | %-10s | %-6s\n",
     vctrs::field(x, "player_no"),
@@ -86,10 +87,59 @@ format.scores <- function(x, ...) {
 #' @param x A scores vector rcrd class
 #' @param to A class that we need to convert to. By default a data frame
 #' @param ... additional parameters if required
-#' @importFrom vctrs vec_data
+#' @importFrom vctrs vec_data vec_cast
 #' @return A data frame
 #' @export
 vec_cast.data.frame.scores <- function(x, to, ...) {
   vctrs::vec_data(x)
 }
 
+#' Custom method for casting the data frame class to scores class
+#'
+#' @param x A data frame to be converted to rcrd class
+#' @param to A class that we need to convert to. By default scores
+#' @param ... additional parameters if required
+#' @importFrom vctrs vec_data vec_assert vec_cast
+#' @return A rcrd vector
+#' @export
+vec_cast.scores.data.frame <- function(x, to, ...) {
+  warning(
+    "Please ensure that first column represents player_no, 2nd column represents Pot amount and 3rd column represents Bet amount"
+  )
+  if (length(x) != 3) {
+    stop("There should be only 3 columns. Not more than that or less than that")
+  }
+  player_no <- x[, 1]
+  pot <- x[, 2]
+  bet <- x[, 3]
+  vec_assert(player_no, numeric())
+  vec_assert(pot, numeric())
+  vec_assert(bet, numeric())
+  if (length(player_no) != length(pot) ||
+      length(player_no) != length(bet)) {
+    stop("All columns need to be of same size")
+  }
+  create_scoreboard(player_no, pot, bet)
+}
+
+#' Custom method for prototyping the scores class with data frame class
+#'
+#' @param x A scores vector rcrd class
+#' @param y A data frame class
+#' @param ... additional parameters if required
+#' @importFrom vctrs vec_ptype2
+#' @return A data frame
+#' @export
+vec_ptype2.scores.data.frame <- function(x, y, ...) {
+  data.frame()
+}
+
+#' Custom method for prototyping the data frame class with scores class
+#'
+#' @param x A data frame class
+#' @param y A scores vector rcrd class
+#' @param ... additional parameters if required
+#' @importFrom vctrs vec_ptype2
+#' @return A data frame
+#' @export
+vec_ptype2.data.frame.scores <- vec_ptype2.scores.data.frame

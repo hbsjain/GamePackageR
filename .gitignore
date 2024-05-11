@@ -5,3 +5,5 @@
 .Rout
 *.Rout
 inst/doc
+/doc/
+/Meta/

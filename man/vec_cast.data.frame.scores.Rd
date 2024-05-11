@@ -4,7 +4,7 @@
 \alias{vec_cast.data.frame.scores}
 \title{Custom method for casting the scores class to data frame class}
 \usage{
-vec_cast.data.frame.scores(x, to, ...)
+\method{vec_cast}{data.frame.scores}(x, to, ...)
 }
 \arguments{
 \item{x}{A scores vector rcrd class}

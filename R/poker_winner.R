@@ -8,7 +8,7 @@
 #' poker_winner(list(c("2h","2h","2h","2h","3h"),c("4h","4h","4h","4h","5h")))
 
 poker_winner <- function(hands) {
-  if(!length(hands) == 2){
+  if (!length(hands) == 2) {
     stop("More than 2 player hands entered.")
   }
   hands <- lapply(hands, toupper)
@@ -38,4 +38,3 @@ poker_winner <- function(hands) {
     }
   }
 }
-
