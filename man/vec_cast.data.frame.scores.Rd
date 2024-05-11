@@ -11,7 +11,7 @@ vec_cast.data.frame.scores(x, to, ...)
 
 \item{to}{A class that we need to convert to. By default a data frame}
 
-\item{...}{Other parameters if required}
+\item{...}{additional parameters if required}
 }
 \value{
 A data frame

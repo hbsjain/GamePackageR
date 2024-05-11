@@ -4,6 +4,12 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/poker777.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -19,12 +25,27 @@
     <loc>/reference/card_values.html</loc>
   </url>
   <url>
+    <loc>/reference/create_scoreboard.html</loc>
+  </url>
+  <url>
+    <loc>/reference/format.scores.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
     <loc>/reference/poker777-package.html</loc>
   </url>
   <url>
+    <loc>/reference/poker_balance_chips.html</loc>
+  </url>
+  <url>
+    <loc>/reference/poker_leaderboard.html</loc>
+  </url>
+  <url>
     <loc>/reference/poker_winner.html</loc>
+  </url>
+  <url>
+    <loc>/reference/vec_cast.data.frame.scores.html</loc>
   </url>
 </urlset>

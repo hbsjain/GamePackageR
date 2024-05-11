@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{A scores vector rcrd class}
 
-\item{...}{Other parameters if required}
+\item{...}{additional parameters if required}
 }
 \value{
 Neatly prints the scores board

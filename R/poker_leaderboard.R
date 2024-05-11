@@ -67,7 +67,7 @@ create_scoreboard <- function(player_no, pot, bet) {
 #' Custom Formatting of the scores class
 #'
 #' @param x A scores vector rcrd class
-#' @param ... Other parameters if required
+#' @param ... additional parameters if required
 #' @importFrom vctrs field
 #' @return Neatly prints the scores board
 #' @export
@@ -85,7 +85,7 @@ format.scores <- function(x, ...) {
 #'
 #' @param x A scores vector rcrd class
 #' @param to A class that we need to convert to. By default a data frame
-#' @param ... Other parameters if required
+#' @param ... additional parameters if required
 #' @importFrom vctrs vec_data
 #' @return A data frame
 #' @export
